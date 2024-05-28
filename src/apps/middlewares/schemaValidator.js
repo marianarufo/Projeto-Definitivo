@@ -1,3 +1,5 @@
+const { Validator } = require('jsonschema');
+const v = new Validator;
 const schemaValidator = (schema) => (req, res, next) => {
     const result = v.validate(req.body, schema);
 
