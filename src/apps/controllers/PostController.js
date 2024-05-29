@@ -44,6 +44,32 @@ class PostController {
     return res.status(200).json({ message: 'Post deleted!' });
   }
 
+  async update(req, res) {
+    const { id } = req.params;
+
+    const verifyPost = await Posts.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!verifyPost) {
+      return res.status(404).json({ message: 'Post does not exits!' });
+    }
+
+   //. 
+   
+    const postUpdate = await Posts.update(req.body, { where: { id } });
+
+    if (!postUpdate) {
+      return res.status(400).json({ message: 'Failed to update this post!' });
+    }
+
+    return res.status(200).json({ message: 'Posts updated!' });
+  }
+
+
+
 }
 
 
