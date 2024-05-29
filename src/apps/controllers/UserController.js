@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs');
 const Users = require('../models/Users');
-
+const { decryptedToken } = require('../../utils/token');
 
 
 class UserController{
@@ -23,17 +23,25 @@ class UserController{
         
     async update(req, res) {
         const {
-          name, avatar, bio, gender, old_password, new_password, confirm_new_password,
+          user_name, name, avatar, bio, gender, password, old_password, new_password, confirm_new_password,
         } = req.body;
     
-        const user = await Users.findOne({id: req.userId});
+        const user = await Users.findOne({
+          where: {
+            user_name: user_name, 
+          }
+        });
 
         if (!user) {
             return res.status(400).json({ message: 'User not exits!' });
           }
       
           let encryptedPassword = '';
-      
+
+          if (!await user.checkPassword(password)) {
+            return res.status(401).json({ error: 'Password does not match!' });
+          }
+
           if (old_password) {
             if (!await user.checkPassword(old_password)) {
               return res.status(401).json({ error: 'Old password does not match!' });
@@ -73,36 +81,55 @@ class UserController{
         }
 
         async delete(req, res) {
-            const { user_name } = req.body;
-            const user = await Users.findOne({
-                where:{
-                user_name: user_name
-                },
-            });
+          const { user_name, password } = req.body;
 
-            if (!user) {
-              return res.status(400).json({ message: 'User not exists!' });
-            }
-        
-            await Users.destroy({
-                where: {
-                    user_name: user_name
-                },
-                });
-        
-            return res.status(200).json({ message: 'User deleted!' });
+          if (!user_name) {
+            return res.status(400).json({ message: 'We need a user_name!' });
           }
 
+          const user = await Users.findOne({
+              where:{
+              user_name: user_name
+              },
+          });
+
+
+
+          if (!user) {
+            return res.status(400).json({ message: 'User not found!' });
+          }
+
+          if (!password) {
+            return res.status(400).json({ message: 'We need a password!' });
+          }
+
+          if (!await user.checkPassword(password)) {
+            return res.status(401).json({ error: 'Password does not match!' });
+          }
+
+
+      
+          await Users.destroy({
+              where: {
+                  user_name: user_name
+              },
+              });
+      
+          return res.status(200).json({ message: 'User deleted!' });
+        }
+
           async userProfile(req, res) {
-            const { user_name: userName } = req.body;
-            const user = await Users.findOne({user_name: userName});
+            
+            const { user_name } = req.body;
+
+            const user = await Users.findOne({ where: {user_name: user_name}});
         
             if (!user) {
               return res.status(400).json({ message: 'User not exists!' });
             }
         
             const {
-              id, name, user_name, email, avatar, bio, gender,
+              id, name, email, avatar, bio, gender,
             } = user;
         
             return res.status(200).json({

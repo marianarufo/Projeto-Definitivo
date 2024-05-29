@@ -28,13 +28,17 @@ routes.get("/health", (req,res) => {
     return res.send({message: "Connected with success!"});
 });
 
+routes.get('/user-profile', UserController.userProfile)
+
+routes.put('/user', UserController.update);
+routes.delete('/user', UserController.delete);
+
 
 routes.use(AuthenticationMiddleware);
 
 
-routes.put('/user', UserController.update);
-routes.delete('/user', UserController.delete);
-routes.get('/user-profile', UserController.userProfile)
+
+
 
 routes.post('/upload', upload.single('image'), FileController.upload);
 
