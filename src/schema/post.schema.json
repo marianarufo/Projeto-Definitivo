@@ -8,6 +8,12 @@
         } ,
         "description": {
             "type":"string"
+        },
+        "password":{
+            "type": "string"
+        },
+        "user_name":{
+            "type": "string"
         }
     },
     "required": ["image","description"]

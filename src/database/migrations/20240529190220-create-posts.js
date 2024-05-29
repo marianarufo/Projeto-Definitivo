@@ -18,8 +18,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
-      author_id: {
-        type: Sequelize.INTEGER,
+      author_user_name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {

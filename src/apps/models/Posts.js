@@ -8,7 +8,7 @@ class Posts extends Model {
         image: Sequelize.STRING,
         description: Sequelize.STRING,
         number_likes: Sequelize.INTEGER,
-        author_id: Sequelize.INTEGER,
+        author_user_name: Sequelize.STRING,
       },
       {
         sequelize,
@@ -19,7 +19,7 @@ class Posts extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Users, { foreignKey: 'author_id', as: 'user' });
+    this.belongsTo(models.Users, { foreignKey: 'author_user_name', as: 'user' });
   }
 }
 

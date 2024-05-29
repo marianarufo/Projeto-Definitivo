@@ -36,10 +36,6 @@ routes.delete('/user', UserController.delete);
 
 routes.use(AuthenticationMiddleware);
 
-
-
-
-
 routes.post('/upload', upload.single('image'), FileController.upload);
 
 routes.post('/post', schemaValidator(postSchema), PostController.create);
