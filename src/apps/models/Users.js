@@ -27,7 +27,9 @@ class Users extends Model {
         return this;
     }
 
-    
+    checkPassword(password) {
+    return bcryptjs.compare(password, this.password_hash);
+  }
 }
 
 module.exports = Users;

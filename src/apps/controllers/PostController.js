@@ -68,8 +68,6 @@ class PostController {
     return res.status(200).json({ message: 'Posts updated!' });
   }
 
-
-
 }
 
 
