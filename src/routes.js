@@ -3,6 +3,7 @@ const { upload } = require('./configs/multer')
 const schemaValidator = require('./apps/middlewares/schemaValidator');
 
 const AuthenticationMiddleware = require('./apps/middlewares/authentication');
+const AuthenticationMaster = require('./apps/middlewares/authenticationMaster');
 
 const AuthenticationController = require('./apps/controllers/AuthenticationController');
 const authSchema = require('./schema/auth.schema.json');
@@ -31,7 +32,6 @@ routes.get("/health", (req,res) => {
 routes.get('/user-profile', UserController.userProfile)
 
 
-
 routes.use(AuthenticationMiddleware);
 
 routes.post('/forgot-password', UserController.rescue);
@@ -51,6 +51,12 @@ routes.delete('/post/:id', PostController.delete);
 routes.put('/post/:id', PostController.update);
 routes.get('/list-posts', PostController.listPosts);
 routes.put('/like/:id', PostController.addLike);
+
+routes.use(AuthenticationMaster);
+
+routes.get('/list-all-posts', PostController.listAllPosts);
+routes.get('/list-all-users', UserController.listAllUsers);
+
 
 
 module.exports = routes;

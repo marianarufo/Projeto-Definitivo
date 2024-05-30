@@ -220,11 +220,22 @@ async addLike(req, res) {
   return res.status(200).json({
     message: '+1 Like!',
   });
-}
-}
-if(!findUser){
-      return res.status(400).json({ message: 'User not found!' });
-    }
 
+  if(!findUser){
+    return res.status(400).json({ message: 'User not found!' });
+  }
+}
+
+   
+
+
+    async listAllPosts(req, res) {
+      const allPosts = await Posts.findAll();
+  
+      return res.status(200).json({
+        data: allPosts,
+      });
+    }
+}
 
 module.exports = new PostController();

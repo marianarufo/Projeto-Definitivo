@@ -90,17 +90,18 @@ class UserController{
 
         async delete(req, res) {
           const { user_name, password } = req.body;
-
-          if (!user_name) {
-            return res.status(400).json({ message: 'We need a user_name!' });
-          }
-
+          
+        
           const user = await Users.findOne({
               where:{
               user_name: user_name
               },
           });
+          
 
+          if (!user_name) {
+            return res.status(400).json({ message: 'We need a user_name!' });
+          }
 
 
           if (!user) {
@@ -112,11 +113,9 @@ class UserController{
           }
 
           if (!await user.checkPassword(password)) {
-            return res.status(401).json({ error: 'Password does not match!' });
+            return res.status(400).json({ error: 'Password does not match!' });
           }
 
-
-      
           await Users.destroy({
               where: {
                   user_name: user_name
@@ -189,6 +188,14 @@ class UserController{
             } catch (error) {
                 return res.status(400).send({ message: "Unable to change the password!"});
             }
+        }
+
+        async listAllUsers(req, res) {
+          const allUsers = await Users.findAll();
+      
+          return res.status(200).json({
+            data: allUsers,
+          });
         }
 
     }
