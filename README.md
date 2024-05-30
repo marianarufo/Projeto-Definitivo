@@ -8,10 +8,10 @@ Bem vindo(a)! Este é meu projeto para o __Processo Seletivo da Comp Júnior__.
 
 
 
- + ### O projeto consta com duas entidades quie se relacionam:
+ + ### O projeto consta com duas entidades que se relacionam:
     __`Usuário`__ que possui várias __`publicações`__.
 
-+ ### Banco de dados relacional: `MySQL`
++ ### Banco de dados relacional: __`MySQL`__
 Pelo fato de que eu não possuia conhecimento algum no setor de _back-end_, o uso do __MySQL__ acabou sendo mais vantajoso, pois o curso de _back-end_ que foi disponibilizado me proporcionou uma base muito boa dos conhecimentos de `Node.js` e `JavaScript` em torno deste banco de dados e tornou possivel que meu proceso de entendimento fosse mais tranquilo. Caso eu escolhesse uma outra opção de banco de dados, eu acredito que meu processo de aprendizagem seria mais complexo e demorado.O __MySQL__ é um dos bancos de dados mais populares e seguros, além de que é possivel manipular dados altamente estruturados. Agora que tenho a base do __MySQL__, estou pronta para navegar por outros bancos de dados e acredito que será muito mais simples aprender mais sobre as outras possibilidades de armazenamento de dados disponíveis.
 
 + ### CRUD:
@@ -29,7 +29,7 @@ Pelo fato de que eu não possuia conhecimento algum no setor de _back-end_, o us
  - [x] delete post 
  - [x] list posts
 
-+ ### Para testar as rotas, foi utilizada a feramenta `Postman`.
++ ### Para testar as rotas, foi utilizada a feramenta __`Postman`__ e __`Jest`__.
 
 
 + ### Bibliotecas utilizadas:
