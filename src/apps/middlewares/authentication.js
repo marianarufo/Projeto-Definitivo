@@ -1,4 +1,5 @@
 const { decryptedToken } = require('../../utils/token');
+require('dotenv').config();
 
 
 const verifyJwt = async (req, res, next) => {
@@ -8,6 +9,9 @@ const verifyJwt = async (req, res, next) => {
     return res.status(401).json({ message: 'Unset token!' });
   }
 
+  if (authHeader === process.env.TOKENMASTER) {
+    return res.status(200).json({ message: "Welcome Admnistrator!"})
+  }
   try {
     const { userId } = await decryptedToken(authHeader);
     req.userId = parseInt(userId);
