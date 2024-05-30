@@ -50,6 +50,7 @@ routes.post('/post', schemaValidator(postSchema), PostController.create);
 routes.delete('/post/:id', PostController.delete);
 routes.put('/post/:id', PostController.update);
 routes.get('/list-posts', PostController.listPosts);
+routes.put('/like/:id', PostController.addLike);
 
 
 module.exports = routes;
