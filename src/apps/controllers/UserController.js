@@ -1,6 +1,8 @@
 const bcryptjs = require('bcryptjs');
 const Users = require('../models/Users');
 const { decryptedToken } = require('../../utils/token');
+const mailer = require('../../modules/mailer');
+const crypto = require("crypto");
 
 
 class UserController{
@@ -138,6 +140,50 @@ class UserController{
               },
             });
           }
+
+          async rescue(req, res){
+            const { email } = req.body;
+            try {
+                const user = await Users.findOne({ 
+                  where: {
+                     email, 
+                    }
+                    });
+                if(!user){
+                    return res.status(400).json({ message: "User not found!"});
+                }
+                const token = crypto.randomBytes(20).toString('hex');
+                const now = new Date();
+                now.setHours(now.getHours() + 1);
+
+                await Users.update(
+                  {
+                    password_reset_token: token,
+                    password_reset_expires: now,
+                  },
+                  {
+                    where: {
+                      email,
+                    },
+                  },
+                );
+
+                mailer.sendMail({
+                    to: email,
+                    from: 'mariana.rufo@compjunior.com.br',
+                    template: 'auth/forgot_password',
+                    context: { token },
+                }, (err) => {
+                    if(err){
+                        console.log(err);
+                        return res.status(400).json({ message: 'Cannot send forgot password email!'});
+                    }
+                    return res.status(200).json({ message: "Email sent successfully!"});
+                })
+            } catch (error) {
+                return res.status(400).send({ message: "Unable to change the password!"});
+            }
+        }
 
     }
     module.exports = new UserController();

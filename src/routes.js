@@ -34,6 +34,8 @@ routes.get('/user-profile', UserController.userProfile)
 
 routes.use(AuthenticationMiddleware);
 
+routes.post('/forgot-password', UserController.rescue);
+
 routes.put('/user', UserController.update);
 routes.delete('/user', UserController.delete);
 
