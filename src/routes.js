@@ -30,18 +30,24 @@ routes.get("/health", (req,res) => {
 
 routes.get('/user-profile', UserController.userProfile)
 
-routes.put('/user', UserController.update);
-routes.delete('/user', UserController.delete);
 
 
 routes.use(AuthenticationMiddleware);
+
+routes.put('/user', UserController.update);
+routes.delete('/user', UserController.delete);
+
+routes.get('/user-profile', UserController.userProfile)
+
+routes.put('/user', UserController.update);
+routes.delete('/user', UserController.delete);
 
 routes.post('/upload', upload.single('image'), FileController.upload);
 
 routes.post('/post', schemaValidator(postSchema), PostController.create);
 routes.delete('/post/:id', PostController.delete);
 routes.put('/post/:id', PostController.update);
-
+routes.get('/list-posts', PostController.listPosts);
 
 
 module.exports = routes;

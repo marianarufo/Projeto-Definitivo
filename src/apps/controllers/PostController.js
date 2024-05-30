@@ -160,7 +160,40 @@ class PostController {
   }
 }
 
-}
 
+
+async listPosts(req, res) {
+
+  const { user_name } = req.body;
+
+  const allPosts = await Posts.findAll({
+    order: [
+      ['id', 'DESC'],
+    ],
+    where: {
+      author_user_name: user_name
+    },
+  });
+
+  if (!allPosts) {
+    return res.status(400).json({ message: 'Failed to list all posts' });
+  }
+
+  const formattedData = [];
+
+  for (const item of allPosts) {
+    formattedData.push({
+      id: item.id,
+      image: item.image,
+      description: item.description,
+      number_likes: item.number_likes,
+    });
+  }
+
+  return res.status(200).json({
+    data: formattedData,
+  });
+}
+}
 
 module.exports = new PostController();
