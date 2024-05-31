@@ -30,7 +30,9 @@ routes.get("/health", (req,res) => {
 });
 
 routes.get('/user-profile', UserController.userProfile)
-
+routes.get('/user-profile', UserController.userProfile)
+routes.get('/list-posts', PostController.listPosts);
+routes.put('/like/:id', PostController.addLike);
 
 routes.use(AuthenticationMiddleware);
 
@@ -38,9 +40,6 @@ routes.post('/forgot-password', UserController.rescue);
 
 routes.put('/user', UserController.update);
 routes.delete('/user', UserController.delete);
-
-routes.get('/user-profile', UserController.userProfile)
-
 routes.put('/user', UserController.update);
 routes.delete('/user', UserController.delete);
 
@@ -49,8 +48,7 @@ routes.post('/upload', upload.single('image'), FileController.upload);
 routes.post('/post', schemaValidator(postSchema), PostController.create);
 routes.delete('/post/:id', PostController.delete);
 routes.put('/post/:id', PostController.update);
-routes.get('/list-posts', PostController.listPosts);
-routes.put('/like/:id', PostController.addLike);
+
 
 routes.use(AuthenticationMaster);
 
