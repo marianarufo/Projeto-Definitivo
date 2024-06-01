@@ -144,5 +144,7 @@ npm start
   - __`mysql2`__:conectar e mandar comandos SQL para o banco de dados;
   - __`uuid`__: gerar token;
 
-
+## :newspaper: Documentação Extra:
+[Documentação no Word](https://docs.google.com/document/d/1efYV0HaNPS9Xo9kq69jjXc-8xiBBNlPP/edit?usp=sharing&ouid=101730707665507339992&rtpof=true&sd=true)
+[Estrutura do código no Figma](https://www.figma.com/board/UArBL0LPYAyErKq8UlxWnW/Estrutura-do-c%C3%B3digo?node-id=0-1&t=PWCVwR1Wi4f0s9az-1)
 
