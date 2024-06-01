@@ -29,10 +29,71 @@ Pelo fato de que eu não possuia conhecimento algum no setor de _back-end_, o us
  - [x] delete post 
  - [x] list posts
 
+## :hammer_and_wrench: How to run the project
+
+To run this application you need to have **Git**.
+
+### 1 - Clone the repository
+```sh
+git clone git@github.com:marianarufo/projeto-final.git
+```
+
+### 2 - Enter the project folder
+```sh
+cd projetofinal
+```
+
+### 3 - Run the libraries installations by running the commands below in the application root folder.
+```sh
+npm install
+```
+```sh
+npm install express
+```
+```sh
+npm install sequelize
+```
+```sh
+npm install jest
+```
+```sh
+npm install dotenv
+```
+```sh
+npm install jsonwebtoken
+```
+```sh
+npm install bcryptjs
+```
+```sh
+npm install jsonschema
+```
+```sh
+npm install multer
+```
+```sh
+npm install nodemailer
+nodemailer-express-hendlebars
+```
+```sh
+npm install mysql2
+```
+```sh
+npm install uuid
+```
+
+### 4- Running the application:
+```sh
+npm start
+```
+<br />
+</details>
+
+
 + ### Para testar as rotas, foi utilizada a feramenta __`Postman`__ e __`Jest`__.
 
 
-+ ### Bibliotecas utilizadas:
++ ### Libraries:
   - __`express`__: gerenciar e adicionar processos de requisições;
   - __`sequelize`__: permite criar classes que representam as tabelas do seu banco de dados, permitindo que os dados sejam manipulados a partir de objetos e métodos;
   - __`sequelize-cli`__: inclui funcionalidades relacionadas às migrations.
