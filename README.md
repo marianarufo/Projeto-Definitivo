@@ -44,6 +44,27 @@ Pelo fato de que eu não possuia conhecimento algum no setor de _back-end_, o us
 
 - POST <code>/upload</code> :  Realiza o upload da imagem anexada.
 
+### Body Examples
+
+- Criar um usuário:
+```json
+{ 
+    "name":"Exemplo",
+    "password": "123",
+    "email": "exemplo@gmail.com",
+    "user_name": "exemplo_exemplo"
+}
+```
+- Criar um post:
+```json
+{ 
+    "user_name": "exmeplo_exemplo",
+    "password": "123",
+    "image": "imagem_teste",
+    "description": "Essa é uma descrição teste!"
+}
+```
+
 ## :hammer_and_wrench: Como rodar o projeto
 
 Pra rodar essa aplcação você precisa ter: **Git**.
