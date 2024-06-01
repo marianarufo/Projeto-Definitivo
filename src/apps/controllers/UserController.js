@@ -33,12 +33,31 @@ class UserController{
         const {
           user_name, name, avatar, bio, gender, password, old_password, new_password, confirm_new_password,
         } = req.body;
-    
+
+        
+        if (!user_name) {
+          return res.status(400).json({ message: 'We need a user_name!' });
+        }
+
+        if (!password) {
+          return res.status(400).json({ message: 'We need a password!' });
+        }
+
+
         const user = await Users.findOne({
           where: {
-            user_name: user_name, 
+            user_name, 
           }
         });
+
+        if (!user_name) {
+          return res.status(400).json({ message: 'We need a user_name!' });
+        }
+
+        if (!password) {
+          return res.status(400).json({ message: 'We need a password!' });
+        }
+
 
         if (!user) {
             return res.status(400).json({ message: 'User not exits!' });

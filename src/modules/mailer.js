@@ -6,8 +6,8 @@ var transport = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
     auth: {
-      user: "74574f8e298d01",
-      pass: "c95a71e5bb7913"
+      user: "4322dd6ebdf4ab",
+      pass: "7e318b76ab9268"
      },
   });
   transport.use('compile', hbs({
@@ -19,3 +19,5 @@ var transport = nodemailer.createTransport({
     extName: '.html',
   }));
   module.exports = transport;
+
+

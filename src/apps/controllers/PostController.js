@@ -77,10 +77,13 @@ class PostController {
         },
       });
 
+      if (verifyUser === null) {
+        return res.status(404).json({ message: 'User does not exits!' });
+      }   
+
       if (!await verifyUser.checkPassword(password)) {
         return res.status(401).json({ message: 'Password does not match!' });
       }
-  
   
       const deletedPost = await Posts.destroy({
         where: {
@@ -226,16 +229,16 @@ async addLike(req, res) {
   }
 }
 
-   
+async listAllPosts(req, res) {
+  const allPosts = await Posts.findAll();
+
+  return res.status(200).json({
+    data: allPosts,
+  });
+}
 
 
-    async listAllPosts(req, res) {
-      const allPosts = await Posts.findAll();
-  
-      return res.status(200).json({
-        data: allPosts,
-      });
-    }
+    
 }
 
 module.exports = new PostController();
